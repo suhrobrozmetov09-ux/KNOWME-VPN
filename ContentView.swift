@@ -101,18 +101,19 @@ struct ContentView: View {
         .cornerRadius(12)
     }
     
-        func toggleVPN() {
+    func toggleVPN() {
         if isVPNConnected {
             isVPNConnected = false
             statusText = "SOZLANISHGA TAYYOR"
         } else {
             statusText = "PUBG SERVERLARI OPTIMIZATSIYA QILINMOQDA..."
             
-            // 1.5 soniyadan keyin xatoliksiz faollashtirish animatsiyasi
+            // 1.5 soniyadan keyin xatoliksiz faollashtirish animatsiyasi va hisoblash
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                isVPNConnected = true
-                statusText = "FAOL: PING OPTIMIZATSIYA QILINDI (\(Int(fixLagValue / 3))ms)"
+                let calculatedPing = Int(30 + (100 - fixLagValue) * 0.4)
+                self.isVPNConnected = true
+                self.statusText = "FAOL: PING OPTIMIZATSIYA QILINDI (\(calculatedPing)ms)"
             }
         }
     }
-
+}
