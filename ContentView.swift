@@ -2,8 +2,6 @@ import SwiftUI
 import NetworkExtension
 import UIKit
 
-// @main o'rniga terminal tushunadigan asosiy kirish nuqtasi
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
@@ -111,7 +109,6 @@ struct ContentView: View {
         } else {
             statusText = "PUBG SERVERLARI OPTIMIZATSIYA QILINMOQDA..."
             
-            // Xcode xatosini tuzatish uchun yangilangan xavfsiz VPN konfiguratsiyasi
             let p = NEVPNProtocolIKEv2()
             p.serverAddress = "://knowmevpn.com"
             p.username = "pubg_user"
