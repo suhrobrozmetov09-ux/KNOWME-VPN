@@ -1,5 +1,6 @@
 import SwiftUI
 import NetworkExtension
+import UIKit
 
 @main
 struct KNOWME_VPN_App: App {
