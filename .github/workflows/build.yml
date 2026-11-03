@@ -7,7 +7,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         
-      - name: Compile and Build IPA with Icon
+      - name: Compile and Build IPA with Real Icon
         run: |
           mkdir -p App/Payload/KNOWME-VPN.app
           
@@ -19,10 +19,13 @@ jobs:
                  main.swift ContentView.swift \
                  -o App/Payload/KNOWME-VPN.app/KNOWME-VPN
           
-          # Bulutda avtomatik chiroyli oltin rangli avatarka (AppIcon) yaratish
-          sudo sips -s format png -z 180 180 /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KbdDigitalHeader_Unfilled.icns --out App/Payload/KNOWME-VPN.app/AppIcon60x60@3x.png
+          # Foydalanuvchi yuklagan icon.png rasmini Apple ikonka formatiga o'tkazish
+          if [ -f "icon.png" ]; then
+            sudo sips -z 180 180 icon.png --out App/Payload/KNOWME-VPN.app/AppIcon60x60@3x.png
+            sudo sips -z 120 120 icon.png --out App/Payload/KNOWME-VPN.app/AppIcon60x60@2x.png
+          fi
           
-          # Info.plist fayliga ikonkani va sozlamalarni kiritish
+          # Info.plist sozlamalari
           cat <<EOF > App/Payload/KNOWME-VPN.app/Info.plist
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
@@ -42,10 +45,16 @@ jobs:
               <string>15.0</string>
               <key>UILaunchScreen</key>
               <dict/>
-              <key>CFBundleIconFiles</key>
-              <array>
-                  <string>AppIcon60x60</string>
-              </array>
+              <key>CFBundleIcons</key>
+              <dict>
+                  <key>CFBundlePrimaryIcon</key>
+                  <dict>
+                      <key>CFBundleIconFiles</key>
+                      <array>
+                          <string>AppIcon60x60</string>
+                      </array>
+                  </dict>
+              </dict>
           </dict>
           </plist>
           EOF
