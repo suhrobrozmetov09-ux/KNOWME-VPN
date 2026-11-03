@@ -7,136 +7,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         
-      - name: Create Xcode Project Structure
+      - name: Compile and Build IPA
         run: |
-          # Bulutli serverda loyiha uchun rasmiy xcode tuzilmasini tayyorlash
-          mkdir -p KNOWME-VPN.xcodeproj
+          # To'g'ri ilova papkasini yaratish
+          mkdir -p App/Payload/KNOWME-VPN.app
           
-          # Loyiha konfiguratsiya faylini yozish
-          cat <<EOF > KNOWME-VPN.xcodeproj/project.pbxproj
-          // !$*UTF8*$!
-          {
-              archiveVersion = 1;
-              classes = {};
-              objectVersion = 56;
-              objects = {
-                  /* Begin PBXBuildFile section */
-                  110101022C80000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110101012C80000000000001 /* ContentView.swift */; };
-                  /* End PBXBuildFile section */
-
-                  /* Begin PBXFileReference section */
-                  110101012C80000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-                  110101032C80000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-                  /* End PBXFileReference section */
-
-                  /* Begin PBXFrameworksBuildPhase section */
-                  110101042C80000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
-                  /* End PBXFrameworksBuildPhase section */
-
-                  /* Begin PBXGroup section */
-                  110101052C80000000000001 /* MainGroup */ = {
-                      isa = PBXGroup;
-                      children = (
-                          110101012C80000000000001 /* ContentView.swift */,
-                          110101032C80000000000001 /* Info.plist */,
-                      );
-                      sourceTree = "<group>";
-                  };
-                  /* End PBXGroup section */
-
-                  /* Begin PBXNativeTarget section */
-                  110101062C80000000000001 /* KNOWME-VPN */ = {
-                      isa = PBXNativeTarget;
-                      buildConfigurationList = 110101072C80000000000001 /* Build configuration list for PBXNativeTarget "KNOWME-VPN" */;
-                      buildPhases = (
-                          110101092C80000000000001 /* Sources */,
-                          110101042C80000000000001 /* Frameworks */,
-                      );
-                      buildRules = ();
-                      dependencies = ();
-                      name = "KNOWME-VPN";
-                      productName = "KNOWME-VPN";
-                      productReference = 1101010A2C80000000000001 /* KNOWME-VPN.app */;
-                      productType = "com.apple.product-type.application";
-                  };
-                  /* End PBXNativeTarget section */
-
-                  /* Begin PBXProject section */
-                  1101010B2C80000000000001 /* Project object */ = {
-                      isa = PBXProject;
-                      attributes = { LastUpgradeCheck = 1500; };
-                      buildConfigurationList = 1101010C2C80000000000001 /* Build configuration list for PBXProject "KNOWME-VPN" */;
-                      compatibilityVersion = "Xcode 14.0";
-                      developmentRegion = en;
-                      hasScannedForEncouragedFilesToAutoterminate = 1;
-                      mainGroup = 110101052C80000000000001 /* MainGroup */;
-                      productRefGroup = 110101052C80000000000001 /* MainGroup */;
-                      projectDirPath = "";
-                      projectRoot = "";
-                      targets = (110101062C80000000000001 /* KNOWME-VPN */);
-                  };
-                  /* End PBXProject section */
-
-                  /* Begin PBXSourcesBuildPhase section */
-                  110101092C80000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (110101022C80000000000001 /* ContentView.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
-                  /* End PBXSourcesBuildPhase section */
-
-                  /* Begin XCBuildConfiguration section */
-                  1101010D2C80000000000001 /* Debug */ = {
-                      isa = XCBuildConfiguration;
-                      buildSettings = {
-                          ALWAYS_SEARCH_USER_PATHS = NO;
-                          CLANG_ANALYZER_NONNULL = YES;
-                          CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                          CLANG_ENABLE_MODULES = YES;
-                          CLANG_ENABLE_OBJC_ARC = YES;
-                          CODE_SIGNING_ALLOWED = NO;
-                          CODE_SIGN_IDENTITY = "";
-                          CODE_SIGNING_REQUIRED = NO;
-                          DEVELOPMENT_TEAM = "";
-                          INFOPLIST_FILE = Info.plist;
-                          IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-                          PRODUCT_BUNDLE_IDENTIFIER = com.knowme.vpn.pubg;
-                          PRODUCT_NAME = "\$(TARGET_NAME)";
-                          SDKROOT = iphoneos;
-                          SWIFT_VERSION = 5.0;
-                      };
-                      name = Debug;
-                  };
-                  1101010E2C80000000000001 /* Release */ = {
-                      isa = XCBuildConfiguration;
-                      buildSettings = {
-                          ALWAYS_SEARCH_USER_PATHS = NO;
-                          CLANG_ANALYZER_NONNULL = YES;
-                          CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                          CLANG_ENABLE_MODULES = YES;
-                          CLANG_ENABLE_OBJC_ARC = YES;
-                          CODE_SIGNING_ALLOWED = NO;
-                          CODE_SIGN_IDENTITY = "";
-                          CODE_SIGNING_REQUIRED = NO;
-                          DEVELOPMENT_TEAM = "";
-                          INFOPLIST_FILE = Info.plist;
-                          IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-                          PRODUCT_BUNDLE_IDENTIFIER = com.knowme.vpn.pubg;
-                          PRODUCT_NAME = "\$(TARGET_NAME)";
-                          SDKROOT = iphoneos;
-                          SWIFT_VERSION = 5.0;
-                      };
-                      name = Release;
-                  };
-                  /* End XCBuildConfiguration section */
-
-                  /* Begin XCConfigurationList section */
-                  110101072C80000000000001 /* Build configuration list for PBXNativeTarget "KNOWME-VPN" */ = {isa = XCConfigurationList; buildConfigurations = (1101010D2C80000000000001 /* Debug */, 1101010E2C80000000000001 /* Release */); defaultConfigurationName = Release; defaultConfigurationIsVisible = 0; };
-                  1101010C2C80000000000001 /* Build configuration list for PBXProject "KNOWME-VPN" */ = {isa = XCConfigurationList; buildConfigurations = (1101010D2C80000000000001 /* Debug */, 1101010E2C80000000000001 /* Release */); defaultConfigurationName = Release; defaultConfigurationIsVisible = 0; };
-                  /* End XCConfigurationList section */
-              };
-              rootObject = 1101010B2C80000000000001 /* Project object */;
-          }
-          EOF
-
-          # Info.plist faylini yaratish
-          cat <<EOF > Info.plist
+          # SwiftUI va NetworkExtension kutubxonalarini to'g'ri bog'lab kompilyatsiya qilish
+          swiftc -sdk $(xcrun --sdk iphoneos --show-sdk-path) \
+                 -target arm64-apple-ios15.0 \
+                 -Xfrontend -serialize-debugging-options \
+                 -emit-executable \
+                 ContentView.swift \
+                 -o App/Payload/KNOWME-VPN.app/KNOWME-VPN
+          
+          # Majburiy Info.plist faylini yaratish
+          cat <<EOF > App/Payload/KNOWME-VPN.app/Info.plist
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
           <plist version="1.0">
@@ -158,19 +43,12 @@ jobs:
           </dict>
           </plist>
           EOF
-
-      - name: Build App Using Xcode
-        run: |
-          # Apple-ning rasmiy vositasi orqali loyihani xatolarsiz arxivlash
-          xcodebuild archive -project KNOWME-VPN.xcodeproj -scheme KNOWME-VPN -archivePath build/KNOWME-VPN.xcarchive -sdk iphoneos CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
           
-          # .xcarchive paketini tayyor Scarlet/Esign o'qiydigan .ipa holiga keltirish
-          mkdir -p build/Payload
-          cp -r build/KNOWME-VPN.xcarchive/Products/Applications/KNOWME-VPN.app build/Payload/
-          cd build && zip -r KNOWME-VPN.ipa Payload/
-
+          # Scarlet va Esign o'qiydigan tayyor .ipa arxivini yaratish
+          cd App && zip -r ../KNOWME-VPN.ipa Payload/
+          
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
           name: KNOWME-VPN-Package
-          path: build/KNOWME-VPN.ipa
+          path: KNOWME-VPN.ipa
