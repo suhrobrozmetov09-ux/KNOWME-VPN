@@ -1,0 +1,23 @@
+name: Build iOS IPA
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Setup Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
+        
+      - name: Compile App
+        run: |
+          mkdir -p build/Payload
+          swiftc -sdk iphoneos ContentView.swift -o build/Payload/KNOWME-VPN
+          cd build && zip -r KNOWME-VPN.ipa Payload/
+          
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: KNOWME-VPN-Package
+          path: build/KNOWME-VPN.ipa
