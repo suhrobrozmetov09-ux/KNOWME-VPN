@@ -143,3 +143,13 @@ struct ContentView: View {
         }
     }
 }
+
+// Bu kod telefon tizimiga ilovani aynan shu ekrandan ochishni buyuradi
+@main
+struct KNOWME_VPN_App: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
