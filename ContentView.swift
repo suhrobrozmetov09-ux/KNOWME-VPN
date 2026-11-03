@@ -2,12 +2,17 @@ import SwiftUI
 import NetworkExtension
 import UIKit
 
-@main
-struct KNOWME_VPN_App: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+// @main o'rniga terminal tushunadigan asosiy kirish nuqtasi
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = UIHostingController(rootView: ContentView())
+        self.window = window
+        window.makeKeyAndVisible()
+        return true
     }
 }
 
@@ -105,13 +110,12 @@ struct ContentView: View {
             statusText = "SOZLANISHGA TAYYOR"
         } else {
             statusText = "PUBG SERVERLARI OPTIMIZATSIYA QILINMOQDA..."
+            
+            // Xcode xatosini tuzatish uchun yangilangan xavfsiz VPN konfiguratsiyasi
             let p = NEVPNProtocolIKEv2()
             p.serverAddress = "://knowmevpn.com"
             p.username = "pubg_user"
-            
-            let dnsSettings = NEDNSSettings(servers: ["1.1.1.1", "1.0.0.1"])
-            dnsSettings.matchDomains = ["tencentgames.com", "pubgmobile.com"]
-            p.dnsSettings = dnsSettings
+            p.disconnectOnSleep = false
             
             NEVPNManager.shared().protocolConfiguration = p
             NEVPNManager.shared().isEnabled = true
