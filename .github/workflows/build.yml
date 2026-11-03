@@ -9,18 +9,16 @@ jobs:
         
       - name: Compile and Build IPA
         run: |
-          # To'g'ri ilova papkasini yaratish
           mkdir -p App/Payload/KNOWME-VPN.app
           
-          # SwiftUI va NetworkExtension kutubxonalarini to'g'ri bog'lab kompilyatsiya qilish
+          # Ikkala faylni ham birgalikda kompilyatsiya qilish
           swiftc -sdk $(xcrun --sdk iphoneos --show-sdk-path) \
                  -target arm64-apple-ios15.0 \
                  -Xfrontend -serialize-debugging-options \
                  -emit-executable \
-                 ContentView.swift \
+                 main.swift ContentView.swift \
                  -o App/Payload/KNOWME-VPN.app/KNOWME-VPN
           
-          # Majburiy Info.plist faylini yaratish
           cat <<EOF > App/Payload/KNOWME-VPN.app/Info.plist
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
@@ -44,7 +42,6 @@ jobs:
           </plist>
           EOF
           
-          # Scarlet va Esign o'qiydigan tayyor .ipa arxivini yaratish
           cd App && zip -r ../KNOWME-VPN.ipa Payload/
           
       - name: Upload IPA
